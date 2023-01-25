@@ -2,8 +2,7 @@
 {
     public class Attribute
     {
-        public string Name { get; set; }
-        public string DataType { get; set; }
-        public bool IsRequired { get; set; }
+        public string AttributeName { get; set; }
+        public string Value { get; set; }
     }
 }
