@@ -10,6 +10,7 @@
         public DateTime PurchasedAt { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
+        public Guid TypeId { get; set; }
         public Price Price { get; set; }
         public AssetDefinition Definition { get; set; }
     }
