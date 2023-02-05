@@ -16,18 +16,11 @@ namespace Infrastructure.Persistence
             var database = client.GetDatabase(configuration.GetSection("DatabaseSettings:DatabaseName").Value);
             _definitions = database.GetCollection<AssetDefinitionDb>(configuration.GetSection("DatabaseSettings:Collections:AssetDefinition").Value);
         }
-        public async Task<Guid> Create(AssetDefinition assetDefinition)
+        public async Task<Guid> CreateAsync(AssetDefinition assetDefinition, CancellationToken cancellationToken)
         {
-            AssetDefinitionDb definition = new AssetDefinitionDb
-            {
-                Id = assetDefinition.Id,
-                Type = assetDefinition.Type,
-                TypeId = assetDefinition.TypeId,
-                ClientId = assetDefinition.ClientId,
-                Name = assetDefinition.Name,
-            };
+            AssetDefinitionDb definition = Mapper.MapToDb(assetDefinition);
 
-            await _definitions.InsertOneAsync(definition);
+            await _definitions.InsertOneAsync(definition, cancellationToken);
 
             return definition.Id;
         }

@@ -15,17 +15,11 @@ namespace Infrastructure.Persistence
             _types = database.GetCollection<AssetTypeDb>(configuration.GetSection("DatabaseSettings:Collections:AssetType").Value);
         }
 
-        public async Task<Guid> Create(AssetType assetType)
+        public async Task<Guid> CreateAsync(AssetType assetType, CancellationToken cancellationToken)
         {
-            AssetTypeDb type = new AssetTypeDb
-            {
-                Id = assetType.Id,
-                ClientId = assetType.ClientId,
-                Name = assetType.Name,
-                Attributes = assetType.Attributes,
-            };
+            AssetTypeDb type = Mapper.MapToDb(assetType);
 
-            await _types.InsertOneAsync(type);
+            await _types.InsertOneAsync(type, cancellationToken);
 
             return type.Id;
         }

@@ -1,4 +1,7 @@
+using Application.Common.Interfaces;
+using Domain.Entities;
 using Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,5 +22,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapPost("/create/type", async (ITypeRepository repository,[FromBody] AssetType type) =>
+{
+    var result = repository.Create(type);
+
+    return result;
+});
 
 app.Run();
