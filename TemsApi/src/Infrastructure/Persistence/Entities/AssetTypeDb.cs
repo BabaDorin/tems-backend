@@ -8,9 +8,16 @@ namespace Infrastructure.Persistence.Entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        [BsonElement("_id")]
         public Guid Id { get; set; }
+
+        [BsonElement("clientId")]
         public string ClientId { get; set; }
+        
+        [BsonElement("name")]
         public string Name { get; set; }
+
+        [BsonElement("attributes")]
         public List<AttributeMetadataDb> Attributes { get; set; }
     }
 }

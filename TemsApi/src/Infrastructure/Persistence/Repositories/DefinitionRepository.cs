@@ -6,7 +6,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Core.Operations;
 using System;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure.Persistence.Repositories
 {
     public class DefinitionRepository : IDefinitionRepository
     {

@@ -4,7 +4,7 @@ using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure.Persistence.Repositories
 {
     public class AssetRepository : IAssetRepository
     {

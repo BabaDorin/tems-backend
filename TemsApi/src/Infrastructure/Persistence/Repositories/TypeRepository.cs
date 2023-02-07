@@ -1,10 +1,12 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
+using Infrastructure.Helpers;
 using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure.Persistence.Repositories
 {
     public class TypeRepository : ITypeRepository
     {
@@ -22,6 +24,16 @@ namespace Infrastructure.Persistence
             await _types.InsertOneAsync(type, cancellationToken);
 
             return type.Id;
+        }
+
+        public async Task<IEnumerable<AssetType>> FindByNameAsync(string name, CancellationToken cancellationToken)
+        {
+            var filter = Builders<AssetTypeDb>.Filter.Eq("name", MongoDbQuerying.CaseInsensitiveCompare(name));
+            
+            var matches = await (await _types.FindAsync(filter, cancellationToken: cancellationToken))
+                .ToListAsync(cancellationToken);
+
+            return matches.Select(type => Mapper.MapToEntity(type)).ToList();
         }
     }
 }
