@@ -17,7 +17,7 @@ namespace Application.Managers
             var existingTypes = await _typeRepository.FindByNameAsync(assetType.Name, cancellationToken);
 
             if (existingTypes != null)
-                throw new ExistingTypeException("This type alredy exist!");
+                throw new ExistingTypeException("This type already exist!");
 
             var typeId = await _typeRepository.CreateAsync(assetType, cancellationToken);
 

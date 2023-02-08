@@ -1,6 +1,8 @@
-using Application.Common.Interfaces;
+using Application.AssetTypes.Commands;
+using Application.Managers;
 using Domain.Entities;
 using Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddMediatR(typeof(Program));
 
 var app = builder.Build();
 
@@ -21,13 +24,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//Create type endpoint
+app.MapPost("/create/type", async (IMediator mediator, [FromBody] AssetType assetType) =>
+{
+    var response = await mediator.Send(new CreateTypeCommand(assetType));
+
+    return response;
+});
+
 app.UseHttpsRedirection();
 
-app.MapPost("/create/type", async (ITypeRepository repository,[FromBody] AssetType type) =>
-{
-    var result = repository.Create(type);
-
-    return result;
-});
 
 app.Run();
