@@ -5,5 +5,6 @@ namespace Application.Common.Interfaces
     public interface ITypeRepository
     {
         Task<Guid> CreateAsync(AssetType assetType, CancellationToken cancellationToken);
+        Task<IEnumerable<AssetType>> FindByNameAsync(string name, CancellationToken cancellationToken);
     }
 }

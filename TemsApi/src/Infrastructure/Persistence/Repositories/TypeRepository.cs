@@ -3,7 +3,6 @@ using Domain.Entities;
 using Infrastructure.Helpers;
 using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Infrastructure.Persistence.Repositories

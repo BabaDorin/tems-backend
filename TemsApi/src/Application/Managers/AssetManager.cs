@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
 
-namespace Application
+namespace Application.Managers
 {
     public class AssetManager
     {

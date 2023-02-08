@@ -50,16 +50,6 @@ namespace Infrastructure
             return typeDb;
         }
 
-        public static AssetType MapToEntity(AssetTypeDb type)
-        {
-            return new AssetType
-            {
-                Id = type.Id,
-                ClientId = type.ClientId,
-                Name = type.Name,
-                Attributes = type.Attributes.Select(a => MapToEntity(a)).ToList(),
-            };
-        }
 
         private static PriceDb MapToDb(Price price)
         {
@@ -82,6 +72,16 @@ namespace Infrastructure
 
 
             return attributeMetadataDb;
+        }
+        public static AssetType MapToEntity(AssetTypeDb type)
+        {
+            return new AssetType
+            {
+                Id = type.Id,
+                ClientId = type.ClientId,
+                Name = type.Name,
+                Attributes = type.Attributes.Select(a => MapToEntity(a)).ToList(),
+            };
         }
 
         public static AttributeMetadata MapToEntity(AttributeMetadataDb attributeMetadata)
