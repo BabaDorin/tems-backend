@@ -1,22 +1,21 @@
 ﻿using Application.Common.Interfaces;
 
-namespace Application.Managers
+namespace Application.Managers;
+
+public class AssetManager
 {
-    public class AssetManager
+    private readonly IAssetRepository _assetRepository;
+    public AssetManager(IAssetRepository assetRepository)
     {
-        private readonly IAssetRepository _assetRepository;
-        public AssetManager(IAssetRepository assetRepository)
-        {
-            _assetRepository = assetRepository;
-        }
-
-        //Create
-
-        //Read
-
-        //Update
-
-        //Delete
-
+        _assetRepository = assetRepository;
     }
+
+    //Create
+
+    //Read
+
+    //Update
+
+    //Delete
+
 }
