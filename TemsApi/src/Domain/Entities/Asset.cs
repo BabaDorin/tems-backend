@@ -2,7 +2,7 @@
 {
     public class Asset
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string ClientId { get; set; }
         public string TemsId { get; set; }
         public string UploadedBy { get; set; }

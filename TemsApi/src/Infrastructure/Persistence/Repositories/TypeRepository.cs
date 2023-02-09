@@ -18,9 +18,11 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<Guid> CreateAsync(AssetType assetType, CancellationToken cancellationToken)
         {
+            assetType.Id = Guid.NewGuid(); 
+
             AssetTypeDb type = Mapper.MapToDb(assetType);
 
-            await _types.InsertOneAsync(type, cancellationToken);
+            await _types.InsertOneAsync(type, cancellationToken: cancellationToken);
 
             return type.Id;
         }

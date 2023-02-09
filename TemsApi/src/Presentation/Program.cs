@@ -4,6 +4,7 @@ using Domain.Entities;
 using Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddScoped<TypeManager>();
 builder.Services.AddMediatR(typeof(Program));
+builder.Services.AddMediatR(typeof(CreateTypeCommand).GetTypeInfo().Assembly);
 
 var app = builder.Build();
 
@@ -24,13 +27,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//Create type endpoint
-app.MapPost("/create/type", async (IMediator mediator, [FromBody] AssetType assetType) =>
-{
-    var response = await mediator.Send(new CreateTypeCommand(assetType));
 
-    return response;
-});
 
 app.UseHttpsRedirection();
 
