@@ -1,25 +1,25 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Infrastructure.Persistence.Entities
+namespace Infrastructure.Persistence.Entities;
+
+public class AssetDefinitionDb
 {
-    public class AssetDefinitionDb
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        [BsonElement("_id")]
-        public Guid Id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    [BsonElement("_id")]
+    public Guid Id { get; set; }
 
-        [BsonElement("type")]
-        public string Type { get; set; }
+    [BsonElement("type")]
+    public string Type { get; set; }
 
-        [BsonElement("typeId")]
-        public string TypeId { get; set; }
+    [BsonElement("typeId")]
+    public string TypeId { get; set; }
 
-        [BsonElement("clientId")]
-        public string ClientId { get; set; }
+    [BsonElement("clientId")]
+    public string ClientId { get; set; }
 
-        [BsonElement("name")]
-        public string Name { get; set; }
-    }
+    [BsonElement("name")]
+    public string Name { get; set; }
 }
+
