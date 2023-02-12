@@ -8,11 +8,11 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add services to the container.
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddScoped<TypeManager>();
 builder.Services.AddMediatR(typeof(Program));
@@ -27,7 +27,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.MapPost("/types", async (ISender sender, [FromBody]AssetType assetType, CancellationToken cancellationToken) =>
+{
+    var type = await sender.Send(new CreateTypeCommand(assetType),cancellationToken);
 
+    return type;
+});
 
 app.UseHttpsRedirection();
 
