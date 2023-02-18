@@ -1,4 +1,8 @@
 ﻿using Application.Common.Interfaces;
+<<<<<<< Updated upstream
+=======
+using Application.Common.Interfaces.Repositories;
+>>>>>>> Stashed changes
 using Domain.Entities;
 using Infrastructure.Helpers;
 using Infrastructure.Persistence.Entities;
@@ -25,6 +29,16 @@ public class TypeRepository : ITypeRepository
         await _types.InsertOneAsync(type, cancellationToken: cancellationToken);
 
         return type.Id;
+    }
+
+    public async Task<AssetType> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var filter = Builders<AssetTypeDb>.Filter.Eq("_id", id.ToString());
+
+        var type = await(await _types.FindAsync(filter, cancellationToken: cancellationToken))
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return Mapper.MapToEntity(type);
     }
 
     public async Task<IEnumerable<AssetType>> FindByNameAsync(string name, CancellationToken cancellationToken)

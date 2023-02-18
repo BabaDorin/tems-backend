@@ -1,0 +1,11 @@
+﻿using Application.Common.Models;
+using Domain.Entities;
+
+namespace Application.Validators.AttributeValidationStrategies;
+public class NumberValidator : IAttributeValidationStrategy
+{
+    public ValidationResult Validate(Domain.Entities.Attribute attribute, AttributeMetadata metadata)
+    {
+        return ValidationResult.Success();
+    }
+}
