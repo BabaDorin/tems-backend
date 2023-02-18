@@ -1,8 +1,10 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces.Managers;
+using Application.Common.Interfaces.Repositories;
+using Domain.Entities;
 
 namespace Application.Managers;
 
-public class AssetManager
+public class AssetManager : IAssetManager
 {
     private readonly IAssetRepository _assetRepository;
     public AssetManager(IAssetRepository assetRepository)
@@ -10,12 +12,10 @@ public class AssetManager
         _assetRepository = assetRepository;
     }
 
-    //Create
+    public Task<Guid> CreateAsync(Asset asset, CancellationToken cancellationToken)
+    {
+        //Implement this method after
 
-    //Read
-
-    //Update
-
-    //Delete
-
+        throw new NotImplementedException();
+    }
 }

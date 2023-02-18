@@ -27,9 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapPost("/types", async (ISender sender, [FromBody]AssetType assetType, CancellationToken cancellationToken) =>
+app.MapPost("/types", async (ISender sender, [FromBody] AssetType assetType, CancellationToken cancellationToken) =>
 {
-    var type = await sender.Send(new CreateTypeCommand(assetType),cancellationToken);
+    var type = await sender.Send(new CreateTypeCommand(assetType), cancellationToken);
 
     return type;
 });
