@@ -1,10 +1,8 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Operations;
-using System;
 
 namespace Infrastructure.Persistence.Repositories;
 

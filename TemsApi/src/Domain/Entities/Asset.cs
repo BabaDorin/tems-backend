@@ -2,11 +2,7 @@
 {
     public class Asset
     {
-<<<<<<< Updated upstream
-        public Guid Id { get; set; } = Guid.NewGuid();
-=======
         public Guid Id { get; set; }
->>>>>>> Stashed changes
         public string ClientId { get; set; }
         public string TemsId { get; set; }
         public string UploadedBy { get; set; }

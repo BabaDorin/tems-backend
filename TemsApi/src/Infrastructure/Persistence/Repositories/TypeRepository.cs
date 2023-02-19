@@ -1,8 +1,4 @@
-﻿using Application.Common.Interfaces;
-<<<<<<< Updated upstream
-=======
-using Application.Common.Interfaces.Repositories;
->>>>>>> Stashed changes
+﻿using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Helpers;
 using Infrastructure.Persistence.Entities;

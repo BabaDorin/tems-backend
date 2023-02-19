@@ -3,7 +3,6 @@ using Application.Common.Interfaces.Repositories;
 using Application.Validators;
 using Domain.Entities;
 using FluentResults;
-using Application.Common.Models;
 
 namespace Application.Managers;
 public class DefinitionManager : IDefinitionManager

@@ -1,36 +1,17 @@
-﻿using Application.Common.Interfaces;
-<<<<<<< Updated upstream
-using Domain.Entities;
-using Domain.Exceptions;
-=======
+﻿using Application.Common.Interfaces.Managers;
 using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
-using Domain.Exceptions;
 using FluentResults;
->>>>>>> Stashed changes
 
 namespace Application.Managers
 {
-    public class TypeManager
+    public class TypeManager : ITypeManager
     {
         private readonly ITypeRepository _typeRepository;
         public TypeManager(ITypeRepository typeRepository)
         {
             _typeRepository = typeRepository;
         }
-
-<<<<<<< Updated upstream
-        public async Task<Guid> CreateAsync(AssetType assetType, CancellationToken cancellationToken)
-        {
-            var existingTypes = await _typeRepository.FindByNameAsync(assetType.Name, cancellationToken);
-
-            if (existingTypes.Count() != 0) 
-                throw new ExistingTypeException("This type already exist!");
-
-            var typeId = await _typeRepository.CreateAsync(assetType, cancellationToken);
-
-            return typeId;
-=======
         public async Task<Result<Guid>> CreateAsync(AssetType assetType, CancellationToken cancellationToken)
         {
             var existingTypes = await _typeRepository.FindByNameAsync(assetType.Name, cancellationToken);
@@ -41,7 +22,6 @@ namespace Application.Managers
             var typeId = await _typeRepository.CreateAsync(assetType, cancellationToken);
 
             return Result.Ok<Guid>(typeId);
->>>>>>> Stashed changes
         }
     }
 }

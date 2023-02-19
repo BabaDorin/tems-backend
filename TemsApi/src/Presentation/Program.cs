@@ -1,5 +1,5 @@
+using Application;
 using Application.AssetTypes.Commands;
-using Application.Managers;
 using Domain.Entities;
 using Infrastructure;
 using MediatR;
@@ -14,9 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddScoped<TypeManager>();
-builder.Services.AddMediatR(typeof(Program));
-builder.Services.AddMediatR(typeof(CreateTypeCommand).GetTypeInfo().Assembly);
+builder.Services.AddApplicationServices();
+
 
 var app = builder.Build();
 
@@ -27,12 +26,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-<<<<<<< Updated upstream
-=======
-app.MapPost("/types", async (ISender sender, [FromBody]AssetType assetType, CancellationToken cancellationToken) =>
+app.MapPost("/types", async (ISender sender, [FromBody] AssetType assetType, CancellationToken cancellationToken) =>
 {
-    var type = await sender.Send(new CreateTypeCommand(assetType),cancellationToken);
->>>>>>> Stashed changes
+    var type = await sender.Send(new CreateTypeCommand(assetType), cancellationToken);
+
+    return type;
+});
 
 
 app.UseHttpsRedirection();

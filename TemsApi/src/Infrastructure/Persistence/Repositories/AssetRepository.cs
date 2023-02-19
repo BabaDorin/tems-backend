@@ -1,8 +1,4 @@
-﻿using Application.Common.Interfaces;
-<<<<<<< Updated upstream
-=======
-using Application.Common.Interfaces.Repositories;
->>>>>>> Stashed changes
+﻿using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
 using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
