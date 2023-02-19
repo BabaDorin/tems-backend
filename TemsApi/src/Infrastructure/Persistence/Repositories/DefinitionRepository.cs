@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
+using Infrastructure.Mapping;
 using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
