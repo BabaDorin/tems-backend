@@ -18,10 +18,19 @@ public class DefinitionRepository : IDefinitionRepository
     {
         AssetDefinitionDb definition = Mapper.MapToDb(assetDefinition);
 
-        await _definitions.InsertOneAsync(definition, cancellationToken);
+        await _definitions.InsertOneAsync(definition,cancellationToken);
 
         return definition.Id;
     }
 
+    public async Task<AssetDefinition> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var filter = Builders<AssetDefinitionDb>.Filter.Eq("_id", id.ToString());
+
+        var definition = await(await _definitions.FindAsync(filter, cancellationToken: cancellationToken))
+            .FirstOrDefaultAsync();
+
+        return Mapper.MapToEntity(definition);
+    }
 }
 

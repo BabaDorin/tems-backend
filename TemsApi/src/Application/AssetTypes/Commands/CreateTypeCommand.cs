@@ -16,9 +16,9 @@ namespace Application.AssetTypes.Commands
         }
         public async Task<Result<Guid>> Handle(CreateTypeCommand request, CancellationToken cancellationToken)
         {
-            var result = await _typeManager.CreateAsync(request.assetType, cancellationToken);
+            var createdType = await _typeManager.CreateAsync(request.assetType, cancellationToken);
 
-            return result;
+            return createdType;
         }
     }
 }

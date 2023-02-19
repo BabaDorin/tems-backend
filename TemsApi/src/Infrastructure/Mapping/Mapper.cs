@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Infrastructure.Persistence.Entities;
 
-namespace Infrastructure;
+namespace Infrastructure.Mapping;
 
 public class Mapper
 {
@@ -81,6 +81,17 @@ public class Mapper
             ClientId = type.ClientId,
             Name = type.Name,
             Attributes = type.Attributes.Select(a => MapToEntity(a)).ToList(),
+        };
+    }
+    public static AssetDefinition MapToEntity(AssetDefinitionDb definitionDb)
+    {
+        return new AssetDefinition
+        {
+            Id = definitionDb.Id,
+            Type = definitionDb.Type,
+            TypeId = definitionDb.TypeId,
+            ClientId = definitionDb.ClientId,
+            Name = definitionDb.Name,
         };
     }
 
