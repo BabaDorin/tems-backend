@@ -1,7 +1,8 @@
 ﻿using Domain.Entities;
+using FluentResults;
 
 namespace Application.Common.Interfaces.Managers;
 public interface IAssetManager
 {
-    Task<Guid> CreateAsync(Asset asset, CancellationToken cancellationToken);
+    Task<Result<Guid>> CreateAsync(Asset asset, CancellationToken cancellationToken);
 }

@@ -1,13 +1,14 @@
-﻿using Domain.Entities;
+﻿
+using Domain.Entities;
 using Infrastructure.Persistence.Entities;
 
-namespace Infrastructure;
+namespace Infrastructure.Mapping;
 
 public class Mapper
 {
     public static AssetDb MapToDb(Asset asset)
     {
-        AssetDb assetDb = new()
+        return new AssetDb
         {
             Id = asset.Id,
             ClientId = asset.ClientId,
@@ -21,12 +22,10 @@ public class Mapper
             Price = MapToDb(asset.Price),
             Definition = MapToDb(asset.Definition),
         };
-
-        return assetDb;
     }
     public static AssetDefinitionDb MapToDb(AssetDefinition definition)
     {
-        AssetDefinitionDb definitionDb = new()
+        return new AssetDefinitionDb
         {
             Id = definition.Id,
             Type = definition.Type,
@@ -34,45 +33,36 @@ public class Mapper
             ClientId = definition.ClientId,
             Name = definition.Name
         };
-
-        return definitionDb;
     }
     public static AssetTypeDb MapToDb(AssetType type)
     {
-        AssetTypeDb typeDb = new()
+        return new AssetTypeDb
         {
             Id = type.Id,
             ClientId = type.ClientId,
             Name = type.Name,
             Attributes = type.Attributes.Select(a => MapToDb(a)).ToList(),
         };
-
-        return typeDb;
     }
-
-
     private static PriceDb MapToDb(Price price)
     {
-        PriceDb priceDb = new()
+        return new PriceDb
         {
             Amount = price.Amount,
             Currency = price.Currency
         };
-
-        return priceDb;
     }
     public static AttributeMetadataDb MapToDb(AttributeMetadata attributeMetadata)
     {
-        AttributeMetadataDb attributeMetadataDb = new()
+        return new AttributeMetadataDb
         {
             Name = attributeMetadata.Name,
             DataType = attributeMetadata.DataType,
             IsRequired = attributeMetadata.IsRequired
         };
-
-
-        return attributeMetadataDb;
     }
+
+    // Mapping to entity
     public static AssetType MapToEntity(AssetTypeDb type)
     {
         return new AssetType
@@ -83,7 +73,17 @@ public class Mapper
             Attributes = type.Attributes.Select(a => MapToEntity(a)).ToList(),
         };
     }
-
+    public static AssetDefinition MapToEntity(AssetDefinitionDb definitionDb)
+    {
+        return new AssetDefinition
+        {
+            Id = definitionDb.Id,
+            Type = definitionDb.Type,
+            TypeId = definitionDb.TypeId,
+            ClientId = definitionDb.ClientId,
+            Name = definitionDb.Name,
+        };
+    }
     public static AttributeMetadata MapToEntity(AttributeMetadataDb attributeMetadata)
     {
         return new AttributeMetadata

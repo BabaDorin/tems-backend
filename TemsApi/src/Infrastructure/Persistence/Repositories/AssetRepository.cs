@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
+using Infrastructure.Mapping;
 using Infrastructure.Persistence.Entities;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
@@ -14,6 +15,7 @@ public class AssetRepository : IAssetRepository
         var database = client.GetDatabase(configuration.GetSection("DatabaseSettings:ConnectionString").Value);
         _assets = database.GetCollection<AssetDb>(configuration.GetSection("DatabaseSettings:Collections:Assets").Value);
     }
+
     public async Task<Guid> CreateAsync(Asset asset, CancellationToken cancellationToken)
     {
         AssetDb assetDb = Mapper.MapToDb(asset);

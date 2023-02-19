@@ -1,5 +1,5 @@
+using Application;
 using Application.AssetTypes.Commands;
-using Application.Managers;
 using Domain.Entities;
 using Infrastructure;
 using MediatR;
@@ -14,9 +14,8 @@ builder.Services.AddSwaggerGen();
 
 // Add services to the container.
 builder.Services.AddInfrastructureServices(builder.Configuration);
-builder.Services.AddScoped<TypeManager>();
-builder.Services.AddMediatR(typeof(Program));
-builder.Services.AddMediatR(typeof(CreateTypeCommand).GetTypeInfo().Assembly);
+builder.Services.AddApplicationServices();
+
 
 var app = builder.Build();
 

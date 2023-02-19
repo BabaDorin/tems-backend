@@ -1,4 +1,4 @@
-﻿using Application.Managers;
+﻿using Application.Common.Interfaces.Managers;
 using Domain.Entities;
 using FluentResults;
 using MediatR;
@@ -9,17 +9,16 @@ public record CreateTypeCommand(AssetType assetType) : IRequest<Result<Guid>>;
 
 public class CreateTypeCommandHandler : IRequestHandler<CreateTypeCommand, Result<Guid>>
 {
-    private readonly TypeManager _typeManager;
-    public CreateTypeCommandHandler(TypeManager typeManager)
+    private readonly ITypeManager _typeManager;
+    public CreateTypeCommandHandler(ITypeManager typeManager)
     {
         _typeManager = typeManager;
     }
-
     public async Task<Result<Guid>> Handle(CreateTypeCommand request, CancellationToken cancellationToken)
     {
-        var typeId = await _typeManager.CreateAsync(request.assetType, cancellationToken);
+        var createdType = await _typeManager.CreateAsync(request.assetType, cancellationToken);
 
-        return typeId; 
+        return createdType;
     }
 }
 

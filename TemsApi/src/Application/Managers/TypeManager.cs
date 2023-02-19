@@ -2,7 +2,6 @@
 using Application.Common.Interfaces.Repositories;
 using Domain.Entities;
 using FluentResults;
-using System.Net.Http.Headers;
 
 namespace Application.Managers;
 
@@ -13,7 +12,6 @@ public class TypeManager : ITypeManager
     {
         _typeRepository = typeRepository;
     }
-
     public async Task<Result<Guid>> CreateAsync(AssetType assetType, CancellationToken cancellationToken)
     {
         var existingTypes = await _typeRepository.FindByNameAsync(assetType.Name, cancellationToken);
@@ -26,4 +24,5 @@ public class TypeManager : ITypeManager
         return Result.Ok<Guid>(typeId);
     }
 }
+
 
